@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+management:
+  metrics:
+    kafka:
+      consumer:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      properties:
+        spring.json.trusted.packages: "*"
+      group-id: foo
+      auto-offset-reset: earliest
+      client-id: spring-kafka-consumer-hello-world-app
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

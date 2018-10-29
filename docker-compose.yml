@@ -1,0 +1,49 @@
+version: '3.7'
+
+# On linux make sure you have set DOCKER_HOST_IP=172.17.0.1
+# Get the correct IP address from docker0 interface by executing: ifconfig
+
+services:
+
+  # https://hub.docker.com/r/confluentinc/cp-zookeeper/
+  zookeeper:
+    container_name: zookeeper
+    image: confluentinc/cp-zookeeper:5.0.0
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+    ports:
+      - 2181:2181
+
+  # https://hub.docker.com/r/confluentinc/cp-kafka/
+  kafka:
+    container_name: kafka
+    image: confluentinc/cp-kafka:5.0.0
+    environment:
+      # The KAFKA_ADVERTISED_LISTENERS variable is set to kafka:9092. This will make Kafka accessible to other
+      # containers by advertising it’s location on the Docker network.
+      - KAFKA_ADVERTISED_LISTENERS= LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP= LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+      # The same ZooKeeper port is specified here as the previous container.
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_INTER_BROKER_LISTENER_NAME= LISTENER_DOCKER_INTERNAL
+      # The KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR is set to 1 for a single-node cluster. Unless you have three or more
+      # nodes you do not need to change this from the default.
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - JMX_PORT=9999
+      - KAFKA_JMX_OPTS= -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote.rmi.port=9999
+      - KAFKA_LOG4J_LOGGERS= "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    ports:
+      - 9092:9092
+      - 9999:9999
+    depends_on:
+      - zookeeper
+
+  # https://hub.docker.com/r/hlebalbau/kafka-manager/
+  kafka-manager:
+    image: hlebalbau/kafka-manager:1.3.3.18
+    environment:
+      - ZK_HOSTS=zookeeper:2181
+    ports:
+      - 9000:9000
+    depends_on:
+      - kafka
