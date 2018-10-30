@@ -17,10 +17,12 @@ Versions used in this project:
 ## How to run this project
 
 Make sure to set the environment variable `DOCKER_HOST_IP` to the ip of the host running the 
-Docker containers.
+Docker containers using docker-compose.
 
 On Linux you can get the correct IP from docker0 interface by executing: ifconfig
 In my case `DOCKER_HOST_IP=172.17.0.1`
+
+If you are using Docker for Mac <= 1.11, or Docker Toolbox for Windows (your docker machine IP is usually 192.168.99.100)
 
 ```
 docker-compose up -d

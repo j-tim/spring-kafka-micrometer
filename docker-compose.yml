@@ -1,7 +1,11 @@
 version: '3.7'
 
+# Please export the environment variable DOCKER_HOST_IP before starting the stack using docker-compose
 # On linux make sure you have set DOCKER_HOST_IP=172.17.0.1
 # Get the correct IP address from docker0 interface by executing: ifconfig
+
+# If you are using Docker for Mac <= 1.11, or Docker Toolbox for Windows
+# (your docker machine IP is usually 192.168.99.100)
 
 services:
 
