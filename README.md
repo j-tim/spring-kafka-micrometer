@@ -96,7 +96,5 @@ To get more insight in the broker, topics and more you can use this tool.
 * Open [http://localhost:9000](http://localhost:9000)
 * Create a Kafka cluster view [http://localhost:9000/addCluster](http://localhost:9000/addCluster)
 
-![](/documentation/images)
-
-
+![](/documentation/images/kafka-manager-create-cluster.png)
 
