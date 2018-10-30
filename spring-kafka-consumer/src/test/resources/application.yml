@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers}
+      properties:
+        spring.json.trusted.packages: "*"
+      group-id: foo
+      auto-offset-reset: earliest
+      client-id: spring-kafka-consumer-hello-world-app
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
