@@ -6,7 +6,7 @@ Versions used in this project:
 
 * Spring Boot: 2.1.0
 * Spring Kafka: 2.2.0.RELEASE
-* Micrometer: 1.0.1
+* Micrometer: 1.1.0
 
 ## How to build the project
 
