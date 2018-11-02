@@ -67,7 +67,7 @@ See specific Kafka metrics:
   ],
   availableTags: [
     {
-      tag: "client.id",
+      tag: 'client.id',
       values: [
         "spring-kafka-consumer-hello-world-app"
       ]
