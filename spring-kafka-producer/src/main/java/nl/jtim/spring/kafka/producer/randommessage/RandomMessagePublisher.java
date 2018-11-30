@@ -14,14 +14,14 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 @Slf4j
 public class RandomMessagePublisher {
 
-    private final RandonMessageKafkaProducer randonMessageKafkaProducer;
+    private final RandomMessageKafkaProducer randomMessageKafkaProducer;
     private final RandomMessageGenerator randomMessageGenerator;
 
     private AtomicBoolean publishingToKafkaEnabled = new AtomicBoolean(false);
 
     @Autowired
-    public RandomMessagePublisher(RandonMessageKafkaProducer randonMessageKafkaProducer, RandomMessageGenerator randomMessageGenerator) {
-        this.randonMessageKafkaProducer = randonMessageKafkaProducer;
+    public RandomMessagePublisher(RandomMessageKafkaProducer randomMessageKafkaProducer, RandomMessageGenerator randomMessageGenerator) {
+        this.randomMessageKafkaProducer = randomMessageKafkaProducer;
         this.randomMessageGenerator = randomMessageGenerator;
     }
 
@@ -33,7 +33,7 @@ public class RandomMessagePublisher {
             try {
                 Thread.sleep(Duration.of(1, SECONDS).toMillis());
                 Message message = randomMessageGenerator.generateRandomMessage();
-                randonMessageKafkaProducer.send(message.getId(), message);
+                randomMessageKafkaProducer.send(message.getId(), message);
             } catch (InterruptedException e) {
                 log.info("Async thread has been interrupted: {}", e.getMessage());
             }

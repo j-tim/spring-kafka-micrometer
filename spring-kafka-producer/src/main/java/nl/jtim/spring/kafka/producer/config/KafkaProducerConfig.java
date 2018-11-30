@@ -2,11 +2,9 @@ package nl.jtim.spring.kafka.producer.config;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.jtim.spring.kafka.producer.randommessage.Message;
-import nl.jtim.spring.kafka.producer.randommessage.RandonMessageKafkaProducer;
+import nl.jtim.spring.kafka.producer.randommessage.RandomMessageKafkaProducer;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,7 +14,6 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
-import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +64,7 @@ public class KafkaProducerConfig {
   }
 
   @Bean
-  public RandonMessageKafkaProducer messageProducer() {
-    return new RandonMessageKafkaProducer();
+  public RandomMessageKafkaProducer messageProducer() {
+    return new RandomMessageKafkaProducer();
   }
 }

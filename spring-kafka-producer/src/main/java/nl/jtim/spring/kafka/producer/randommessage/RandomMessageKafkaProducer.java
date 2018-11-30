@@ -7,7 +7,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import static nl.jtim.spring.kafka.producer.config.KafkaProducerConfig.TOPIC_NAME;
 
 @Slf4j
-public class RandonMessageKafkaProducer {
+public class RandomMessageKafkaProducer {
 
     @Autowired
     private KafkaTemplate<String, Message> template;
