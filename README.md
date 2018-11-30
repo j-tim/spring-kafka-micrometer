@@ -89,6 +89,8 @@ My Question why is the value of `COUNT` `NaN`?
 }
 ```
 
+This [issue](https://github.com/micrometer-metrics/micrometer/issues/983) has been fixed in Micrometer version 1.1.1 see 
+[commit](https://github.com/micrometer-metrics/micrometer/commit/e9b3efeb42681120dd46b1145f0d682f8569bc28)
 
 ## Kafka manager 
 

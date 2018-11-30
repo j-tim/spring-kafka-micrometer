@@ -27,7 +27,7 @@ import java.util.Map;
 public class KafkaProducerConfig {
 
   public static final String TOPIC_NAME = "hello-world-messages";
-  private static final int NUMBER_OF_PARTITIONS = 4;
+  private static final int NUMBER_OF_PARTITIONS = 1;
   private static final short REPLICATION_FACTOR = (short) 1;
 
   private final KafkaProperties kafkaProperties;
